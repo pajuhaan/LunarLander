@@ -30,7 +30,7 @@ https://github.com/pajuhaan/LunarLander/LunarLander.git
 
 I highly recommend utilizing **Anaconda** + **PyCharm** for your Python projects!
 
-What's Conda? Yes if you are just start Python read [this](#Conda in Python).
+What's Conda? Yes if you are just start Python read [this](#Conda-in-Python).
 
 
 3. Install the required dependencies:
