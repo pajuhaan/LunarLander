@@ -1,0 +1,5 @@
+numpy~=1.23.5
+torch~=2.0.0+cu118
+gymnasium~=0.27.1
+matplotlib~=3.7.1
+gym~=0.26.1
