@@ -1,4 +1,4 @@
-# MY LunarLander: An OpenAI Gymnasium and PyTorch-based project
+# MY LunarLander: An OpenAI Gymnasium and PyTorch-based project [Update 2023]
 
 MY LunarLander is a simplified Python project that teaches how to use OpenAI's Gymnasium and PyTorch to train a
 reinforcement learning agent to land a lunar module. This project uses a QNetwork to model the agent's learning process
