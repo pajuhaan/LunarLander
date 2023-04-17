@@ -26,7 +26,7 @@ env = gym.make('LunarLander-v2',
 print('\n━━━━━━━━━━ Initialize Device ━━━━━━━━━━')
 print('State shape: ', env.observation_space.shape)
 print('Number of actions: ', env.action_space.n)
-checkpoint_path = 'checkpoint.pth'
+checkpoint_path = 'model/checkpoint.pth'
 
 
 def dqn(n_episodes=2000, max_t=1000, eps_start=1.0, eps_end=0.01, eps_decay=0.995):

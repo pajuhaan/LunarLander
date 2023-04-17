@@ -13,7 +13,7 @@ env = gym.make("LunarLander-v2", render_mode="human",
                wind_power=15.0,
                turbulence_power=1.5,
                )
-agent.qnetwork_local.load_state_dict(torch.load('checkpoint.pth'))
+agent.qnetwork_local.load_state_dict(torch.load('model/checkpoint.pth'))
 
 state= env.reset()
 observation = state[0]

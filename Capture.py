@@ -16,7 +16,7 @@ def capture_video(agent, env_name):
                    )
 
     vid = video_recorder.VideoRecorder(env, path="video/captured.mp4")
-    agent.qnetwork_local.load_state_dict(torch.load('checkpoint.pth'))
+    agent.qnetwork_local.load_state_dict(torch.load('model/checkpoint.pth'))
     observation = env.reset()[0]
     terminated = False
     while not terminated:

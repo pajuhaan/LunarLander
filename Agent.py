@@ -34,20 +34,20 @@ class QNetwork(nn.Module):
         """
         super(QNetwork, self).__init__()
         self.seed = torch.manual_seed(seed)
-        self.fc1 = nn.Linear(state_size, 32)    # 8 (State size) -> 64
-        self.fc2 = nn.Linear(32, 64)            # 32 -> 64
-        self.fc2x = nn.Linear(64, 64)            # 64 -> 64
-        self.fc3 = nn.Linear(64, action_size)   # 64 -> 4 (Actions size)
+        self.layer1 = nn.Linear(state_size, 32)    # 8 (State size) -> 64
+        self.layer2 = nn.Linear(32, 64)            # 32 -> 64
+        self.layer3 = nn.Linear(64, 64)            # 64 -> 64
+        self.layer4 = nn.Linear(64, action_size)   # 64 -> 4 (Actions size)
 
     def forward(self, state):
         """Build a network that maps state -> action values."""
-        x = self.fc1(state)
+        x = self.layer1(state)
         x = F.relu(x)
-        x = self.fc2(x)
+        x = self.layer2(x)
         x = F.relu(x)
-        x = self.fc2x(x)
+        x = self.layer3(x)
         x = F.relu(x)
-        return self.fc3(x)
+        return self.layer4(x)
 
 
 class Agent():
