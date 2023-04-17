@@ -60,29 +60,25 @@ environments which contains general information about the environment.
 
 ### Action Space
 
-
-| Code | Action                      |
-|------|-----------------------------|
-| 0    | do nothing                 |
+| Code | Action                        |
+|------|-------------------------------|
+| 0    | do nothing                    |
 | 1    | fire left orientation engine  |
-| 2    | fire main engine           |
-| 3    | fire right orientation engine  |
+| 2    | fire main engine              |
+| 3    | fire right orientation engine |
 
 ### Observation
 
-| Index | Parameter         | Description                               |
-|-------|-------------------|-------------------------------------------|
-| 0     | x-coordinate      | Lander's x-coordinate                     |
-| 1     | y-coordinate      | Lander's y-coordinate                     |
-| 2     | x-linear velocity | Lander's linear velocity in x-direction   |
-| 3     | y-linear velocity | Lander's linear velocity in y-direction   |
-| 4     | angle             | Lander's angle                            |
-| 5     | angular velocity  | Lander's angular velocity                 |
-| 6     | left leg contact  | Boolean: left leg contact with the ground |
-| 7     | right leg contact | Boolean: right leg contact with the ground|
-
-
-
+| Index | Parameter         | Description                                |
+|-------|-------------------|--------------------------------------------|
+| 0     | x-coordinate      | Lander's x-coordinate                      |
+| 1     | y-coordinate      | Lander's y-coordinate                      |
+| 2     | x-linear velocity | Lander's linear velocity in x-direction    |
+| 3     | y-linear velocity | Lander's linear velocity in y-direction    |
+| 4     | angle             | Lander's angle                             |
+| 5     | angular velocity  | Lander's angular velocity                  |
+| 6     | left leg contact  | Boolean: left leg contact with the ground  |
+| 7     | right leg contact | Boolean: right leg contact with the ground |
 
 ### Learn
 
@@ -105,13 +101,22 @@ languages. It was primarily developed for the Anaconda distribution, which is a 
 programming languages for data science, machine learning, and scientific computing. Conda makes it easy to install
 packages and manage dependencies, as well as to create, export, and share isolated environments for different projects.
 
-
 ## Basics
 
+
+| Concept     | Description                                                                                        |
+|-------------|----------------------------------------------------------------------------------------------------|
+| Agent       | The entity that learns and makes decisions in the reinforcement learning process.                  |
+| State       | The current situation or condition of the environment, as perceived by the agent.                  |
+| Action      | The choices or moves made by the agent to interact with the environment.                           |
+| Reward      | The feedback signal provided by the environment to the agent, indicating the quality of an action. |
+| Environment | The context in which the agent interacts and learns, providing states and rewards to the agent.    |
+
+
+If you're interested in gaining a deeper understanding of concepts such as agents, states, actions, rewards, and
+environments, I recommend watching this video by Lex Fridman.
+
 [![Video Thumbnail](https://img.youtube.com/vi/zR11FLZ-O9M/maxresdefault.jpg)](https://www.youtube.com/watch?v=zR11FLZ-O9M)
-
-
-
 
 ### Benefits of Conda
 
