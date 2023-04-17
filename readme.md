@@ -105,6 +105,14 @@ languages. It was primarily developed for the Anaconda distribution, which is a 
 programming languages for data science, machine learning, and scientific computing. Conda makes it easy to install
 packages and manage dependencies, as well as to create, export, and share isolated environments for different projects.
 
+
+## Basics
+
+[![Video Thumbnail](https://img.youtube.com/vi/zR11FLZ-O9M/maxresdefault.jpg)](https://www.youtube.com/watch?v=zR11FLZ-O9M)
+
+
+
+
 ### Benefits of Conda
 
 1. **Cross-platform compatibility**: Conda works seamlessly across Windows, macOS, and Linux, making it easy to manage
