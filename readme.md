@@ -84,6 +84,13 @@ environments which contains general information about the environment.
 
 This will save the learned model as a checkpoint file named `checkpoint.pth`.
 
+**qnetwork_local**: This network, also called the "local" or "online" network, is the main neural network used to predict the Q-values for a given state. It is updated at each learning step using gradient descent to minimize the difference between its predicted Q-values and the target Q-values.
+
+**qnetwork_target**: This network, also known as the "target" or "fixed" network, is a separate neural network that is used to stabilize the learning process. The target network has the same architecture as the local network but with a time-delayed copy of the local network's weights. It is used to compute the target Q-values for the next state during the learning process. The target network's weights are updated less frequently than the local network's weights, usually by a soft update rule (a weighted average of the local and target network weights) or by a hard update (copying the local network weights to the target network after a certain number of learning steps).
+
+
+The main idea behind using two separate networks is to address the issue of overestimation bias in Q-learning. Overestimation bias occurs when the Q-values are updated based on the maximum Q-value of the next state, which could lead to an overly optimistic estimate of the action values. By using a separate, slowly updated target network, DQN reduces the correlation between the predicted Q-values and the target Q-values, leading to more stable training and better performance.
+
 ### Runner
 
 This will load the `checkpoint.pth` file and play the game using the learned model.

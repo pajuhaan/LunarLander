@@ -43,6 +43,8 @@ def dqn(n_episodes=2000, max_t=1000, eps_start=1.0, eps_end=0.01, eps_decay=0.99
     scores = []  # list containing scores from each episode
     scores_window = deque(maxlen=100)  # last 100 scores
     eps = eps_start  # initialize epsilon
+    best_avg_score = -np.inf  # Before the for i_episode in range(1, n_episodes + 1): loop, add a variable to track the best average score:
+
     for i_episode in range(1, n_episodes + 1):
         state = env.reset()[0]
         score = 0
@@ -59,8 +61,13 @@ def dqn(n_episodes=2000, max_t=1000, eps_start=1.0, eps_end=0.01, eps_decay=0.99
         eps = max(eps_end, eps_decay * eps)  # decrease epsilon
         print('\rEpisode {}\tAverage Score: {:.2f}'.format(i_episode, np.mean(scores_window)), end="")
         if i_episode % 100 == 0:
-            torch.save(agent.qnetwork_local.state_dict(), checkpoint_path)
-            print('\r━━━> Episode {}\tAverage Score: {:.2f} | 🆙 Saved'.format(i_episode, np.mean(scores_window)))
+            avg_score = np.mean(scores_window)
+            if avg_score > best_avg_score:  # Modify the saving condition inside the loop to only save if the average score is better than the previous best:
+                best_avg_score = avg_score
+                torch.save(agent.qnetwork_local.state_dict(), checkpoint_path)
+                print('\r━━━> Episode {}\tAverage Score: {:.2f} | 🆙 Saved'.format(i_episode, avg_score))
+            else:
+                print('\rEpisode {}\tAverage Score: {:.2f}'.format(i_episode, avg_score))
 
         if np.mean(scores_window) >= 200.0:
             print('\n━━━━━━━━━━━━━━━ SOLVED ━━━━━━━━━━━━━━━')

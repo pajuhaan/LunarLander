@@ -62,6 +62,7 @@ class Agent():
             action_size (int): dimension of each action
             seed (int): random seed
         """
+        print('\nInitialize agent...')
         self.state_size = state_size
         self.action_size = action_size
         self.seed = random.seed(seed)
@@ -110,31 +111,45 @@ class Agent():
             return random.choice(np.arange(self.action_size))
 
     def learn(self, experiences, gamma):
-        """Update value parameters using given batch of experience tuples.
-
-        Params
-        ======
-            experiences (Tuple[torch.Variable]): tuple of (s, a, r, s', done) tuples
-            gamma (float): discount factor
         """
-        # Obtain random minibatch of tuples from D
+        This method updates the value parameters of the neural network using a batch of experience tuples.
+
+        Arguments:
+        - experiences (Tuple[torch.Variable]): A tuple containing five elements:
+            * s: The states (tensor)
+            * a: The actions (tensor)
+            * r: The rewards (tensor)
+            * s': The next states (tensor)
+            * done: Boolean tensors indicating if the episode has terminated (tensor)
+
+        - gamma (float): The discount factor used in the Q-learning update rule (also called Bellman equation).
+
+        Returns:
+        None
+        """
+
+        # Unpack the experience tuples into individual tensors
         states, actions, rewards, next_states, dones = experiences
 
-        ## Compute and minimize the loss
-        ### Extract next maximum estimated value from target network
+        # Compute the target Q values and minimize the loss
+        # 1. Extract the maximum estimated Q value for the next state from the target network
         q_targets_next = self.qnetwork_target(next_states).detach().max(1)[0].unsqueeze(1)
-        ### Calculate target value from bellman equation
+
+        # 2. Calculate the target Q values using the Bellman equation
         q_targets = rewards + gamma * q_targets_next * (1 - dones)
-        ### Calculate expected value from local network
+
+        # 3. Calculate the expected Q values from the local network
         q_expected = self.qnetwork_local(states).gather(1, actions)
 
-        ### Loss calculation (we used Mean squared error)
+        # 4. Calculate the loss using Mean Squared Error (MSE) between the expected and target Q values
         loss = F.mse_loss(q_expected, q_targets)
-        self.optimizer.zero_grad()
-        loss.backward()
-        self.optimizer.step()
 
-        # ------------------- update target network ------------------- #
+        # Perform backpropagation and optimization
+        self.optimizer.zero_grad()  # Reset the gradients
+        loss.backward()  # Calculate the gradients through backpropagation
+        self.optimizer.step()  # Update the neural network weights
+
+        # Update the target network by soft-updating its weights with those of the local network
         self.soft_update(self.qnetwork_local, self.qnetwork_target, TAU)
 
     def soft_update(self, local_model, target_model, tau):
